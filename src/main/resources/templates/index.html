@@ -8,25 +8,29 @@
 
     <link rel="stylesheet" href="/static/css/lumen/bootstrap.css" th:href="@{css/lumen/bootstrap.css}"/>
     <link rel="stylesheet" href="/static/css/lumen/bootstrap.min.css" th:href="@{css/lumen/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/static/css/mystyle.css" th:href="@{css/mystyle.css}"/>
     <script th:src="@{webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Changa:600" rel="stylesheet">
 
     <title>Generator grup</title>
 </head>
 <body>
 
 <header>
-    <h1>generator grup</h1>
+    <h1 class="card my-navbar bg-white border-0 m-3 pl-3">generator grup</h1>
 </header>
 
-<main>
+<main class="container text-center">
+
     <!--levels with persons-->
     <div th:each="key: ${personsOnLevels.keySet()}">
         <div class="row">
             <div>
                 <div>
                     <h4 th:text="${key.getName()}"
-                        class="card m-3 p-1"
+                        class="card text-white m-3 p-1"
+                        th:classappend="${'my-bg-color-'+key.getValue()}"
                     ></h4>
                 </div>
             </div>
@@ -34,6 +38,7 @@
                 <div th:each="p : ${personsOnLevels.get(key)}">
                     <h5 th:text="${p}"
                         class="card m-3 p-1"
+                        th:classappend="${'my-outline-'+key.getValue()}"
                         style="min-width: 80%">
                     </h5>
                 </div>
@@ -42,7 +47,7 @@
     </div>
 </main>
 
-<footer>
+<footer class="footer">
     <hr>
     <p >Copyright &copy; &nbsp; rengreen 2019</p>
 </footer>

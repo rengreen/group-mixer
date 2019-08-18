@@ -1,0 +1,112 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+main.container {
+    padding: 40px 5px 60px 5px;
+}
+
+.header {
+    position: fixed;
+    top:0;
+    width: 100%;
+    height: 90px;
+    z-index: 1;
+    background-color: white;
+}
+
+.footer {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    height: 45px;
+    background-color: white;
+    text-align: center;
+}
+
+.my-navbar {
+    font-family: 'Changa', sans-serif;
+}
+
+card {
+    font-weight: bold;
+}
+
+.my-bg-color-1 {
+    background-color: #FF9700;
+}
+.my-bg-color-2 {
+    background-color: #4CB050;
+}
+.my-bg-color-3 {
+    background-color: #3F51B5;
+}
+.my-bg-color-4 {
+    background-color: #853bb7;
+}
+.my-bg-color-5 {
+    background-color: #F44236;
+}
+.my-bg-color-6 {
+    background-color: #009788;
+}
+.my-bg-color-7 {
+    background-color: #2196F3;
+}
+.my-bg-color-8 {
+    background-color: #607D8B;
+}
+.my-bg-color-9 {
+    background-color: #FEC107;
+}
+.my-bg-color-10 {
+    background-color: #EA1E63;
+}
+
+.my-outline-1 {
+    border: solid 3px #FF9700;
+    background: white;
+}
+.my-outline-2 {
+    border: solid 3px #4CB050;
+    background: white;
+}
+.my-outline-3 {
+    border: solid 3px #3F51B5;
+    background: white;
+}
+.my-outline-4 {
+    border: solid 3px #853bb7;
+    background: white;
+}
+.my-outline-5 {
+    background-color: #F44236;
+}
+.my-outline-6 {
+    border: solid 3px #009788;
+    background: white;
+}
+.my-outline-7 {
+    border: solid 3px #2196F3;
+    background: white;
+}
+.my-outline-8 {
+    border: solid 3px #607D8B;
+    background: white;
+}
+.my-outline-9 {
+    border: solid 3px #FEC107;
+    background: white;
+}
+.my-outline-10 {
+    border: solid 3px #EA1E63;
+    background: white;
+}
+
+
+
+
+
+
+
