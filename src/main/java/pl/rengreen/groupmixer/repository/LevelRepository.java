@@ -7,4 +7,8 @@ import pl.rengreen.groupmixer.model.Level;
 @Repository
 public interface LevelRepository extends JpaRepository<Level, Long> {
 
+    boolean existsByValue(int value);
+
+    Level findByValue(int levelValue);
+
 }

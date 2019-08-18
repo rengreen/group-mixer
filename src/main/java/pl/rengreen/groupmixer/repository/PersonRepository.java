@@ -7,4 +7,5 @@ import pl.rengreen.groupmixer.model.Person;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
+    boolean existsByName(String name);
 }
