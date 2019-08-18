@@ -1,0 +1,22 @@
+[
+  {
+    "value": 1,
+    "name": "Starterki",
+    "weight": 5
+  },
+  {
+    "value": 2,
+    "name": "Juniorki",
+    "weight": 6
+  },
+  {
+    "value": 3,
+    "name": "Szeregowe",
+    "weight": 7
+  },
+  {
+    "value": 4,
+    "name": "Komandoski",
+    "weight": 8
+  }
+]
