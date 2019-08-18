@@ -20,7 +20,26 @@
 </header>
 
 <main>
-    <p>generator grup</p>
+    <!--levels with persons-->
+    <div th:each="key: ${personsOnLevels.keySet()}">
+        <div class="row">
+            <div>
+                <div>
+                    <h4 th:text="${key.getName()}"
+                        class="card m-3 p-1"
+                    ></h4>
+                </div>
+            </div>
+            <div class="row ml-2">
+                <div th:each="p : ${personsOnLevels.get(key)}">
+                    <h5 th:text="${p}"
+                        class="card m-3 p-1"
+                        style="min-width: 80%">
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer>
