@@ -18,7 +18,30 @@
 <body>
 
 <header>
-    <h1 class="card my-navbar bg-white border-0 m-3 pl-3">generator grup</h1>
+    <!--navbar-->
+    <div class="row">
+        <h1 class="card my-navbar bg-white border-0 m-3 pl-3">generator grup</h1>
+        <div class="row mx-3">
+            <button class="btn btn-info btn-lg m-3" data-toggle="modal" data-target="#modal-info">Info</button>
+            <button class="btn btn-lg btn-primary m-3" href="/teams">Generuj grupy</button>
+        </div>
+    </div>
+    <!--modal for delete confirmation-->
+    <div class="modal" id="modal-info">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Informacje</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Informacje o algorytmie</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <main class="container text-center">
@@ -49,7 +72,7 @@
 
 <footer class="footer">
     <hr>
-    <p >Copyright &copy; &nbsp; rengreen 2019</p>
+    <p>Copyright &copy; &nbsp; rengreen 2019</p>
 </footer>
 
 </body>

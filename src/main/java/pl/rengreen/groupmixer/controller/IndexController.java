@@ -31,6 +31,13 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/teams")
+    public String generateTeams(Model model) {
+        Map<Level, List<String>> personsOnLevels = preparePersonsOnLevels();
+        model.addAttribute("personsOnLevels", personsOnLevels);
+        return "index";
+    }
+
     //LinkedHashMap is used to preserve levels order
     private Map<Level, List<String>> preparePersonsOnLevels(){
         List<Level> levels = levelService.findAllByOrderByValue();
