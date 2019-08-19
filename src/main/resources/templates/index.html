@@ -28,31 +28,32 @@
     </div>
     <!--modal with information about algorithm -->
     <div class="modal" id="modal-info">
-    <!--/*/ <th:block th:include="fragments/modal-info :: modal-info"></th:block> /*/-->
+        <!--/*/ <th:block th:include="fragments/modal-info :: modal-info"></th:block> /*/-->
     </div>
 </header>
 
 <main class="container text-center">
 
     <!--groups with persons-->
-    <div class="row mb-3" th:if="${teamsCreated}">
+    <div class="row mb-5" th:if="${teamsCreated}">
         <div th:each="key: ${personsInTeams.keySet()}"
              class="col-sm-6 col-md-3 mb-1 d-flex align-items">
             <div class="card mb-1" style="min-width: 80%">
-                <h4 class="card-header text-center" th:text="${key}">Card title</h4>
-                <ul class="list-group list-group-flush" th:each="p : ${personsInTeams.get(key)}">
-                    <li class="list-group-item py-1 text-xxl-center">
-
-                        <h5 th:text="${p.getName()}"
-                            class="card p-1"
-                            th:classappend="${'my-outline-'+p.getLevel().getValue()}"
-                            style="min-width: 80%">
-                        </h5>
-                    </li>
+                <h4 class="card-header text-center" th:text="${key.getName()}">Card title</h4>
+                <ul class="list-group list-group-flush">
+                    <div th:each=" p : ${personsInTeams.get(key)}">
+                        <li class="list-group-item py-1 text-xxl-center">
+                            <h5 th:text="${p.getName()}"
+                                class="card p-1"
+                                th:classappend="${'my-outline-'+p.getLevel().getValue()}"
+                                style="min-width: 80%">
+                            </h5>
+                        </li>
+                    </div>
+                    <li th:text="'Suma punktów: '+${key.getPoints()}" class="list-unstyled"></li>
                 </ul>
             </div>
         </div>
-        <hr class="my-4">
     </div>
 
     <!--levels with persons-->

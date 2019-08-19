@@ -8,4 +8,6 @@ import pl.rengreen.groupmixer.model.Team;
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
     boolean existsByName(String name);
+
+    Team findByName(String teamName);
 }

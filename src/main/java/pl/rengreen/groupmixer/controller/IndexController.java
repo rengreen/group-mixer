@@ -44,7 +44,7 @@ public class IndexController {
         model.addAttribute("personsOnLevels", personsOnLevels);
 
         teamService.generateTeams();
-        Map<String, List<Person>> personsInTeams = preparePersonsInTeams();
+        Map<Team, List<Person>> personsInTeams = preparePersonsInTeams();
         model.addAttribute("personsInTeams", personsInTeams);
         model.addAttribute("teamsCreated", true);
         return "index";
@@ -61,12 +61,12 @@ public class IndexController {
         return personsOnLevels;
     }
 
-    private Map<String, List<Person>> preparePersonsInTeams(){
+    private Map<Team, List<Person>> preparePersonsInTeams(){
         List<Team> teams = teamService.findAll();
-        Map<String, List<Person>> personsInTeams=new HashMap<>();
+        Map<Team, List<Person>> personsInTeams=new HashMap<>();
         for (Team team: teams) {
             List<Person> persons = personService.findPersonsByTeam(team);
-            personsInTeams.put(team.getName(), persons);
+            personsInTeams.put(team, persons);
         }
         return personsInTeams;
     }
