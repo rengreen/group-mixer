@@ -22,8 +22,8 @@
     <div class="row">
         <h1 class="card my-navbar bg-white border-0 m-3 pl-3">generator grup</h1>
         <div class="row mx-3">
-            <button class="btn btn-info btn-lg m-3" data-toggle="modal" data-target="#modal-info">Info</button>
-            <button class="btn btn-lg btn-primary m-3" href="/teams">Generuj grupy</button>
+            <button class="btn btn-lg btn-outline-info  m-3" data-toggle="modal" data-target="#modal-info">Info</button>
+            <a class="btn btn-lg btn-outline-primary m-3" href="/teams">Generuj grupy</a>
         </div>
     </div>
     <!--modal with information about algorithm -->
@@ -34,21 +34,42 @@
 
 <main class="container text-center">
 
+    <!--groups with persons-->
+    <div class="row mb-3" th:if="${teamsCreated}">
+        <div th:each="key: ${personsInTeams.keySet()}"
+             class="col-sm-6 col-md-3 mb-1 d-flex align-items">
+            <div class="card mb-1" style="min-width: 80%">
+                <h4 class="card-header text-center" th:text="${key}">Card title</h4>
+                <ul class="list-group list-group-flush" th:each="p : ${personsInTeams.get(key)}">
+                    <li class="list-group-item py-1 text-xxl-center">
+
+                        <h5 th:text="${p.getName()}"
+                            class="card p-1"
+                            th:classappend="${'my-outline-'+p.getLevel().getValue()}"
+                            style="min-width: 80%">
+                        </h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-4">
+    </div>
+
     <!--levels with persons-->
     <div th:each="key: ${personsOnLevels.keySet()}">
         <div class="row">
             <div>
                 <div>
-                    <h4 th:text="${key.getName()}"
-                        class="card text-white m-3 p-1"
+                    <h5 th:text="${key.getName()}"
+                        class="card text-white m-3 p-2"
                         th:classappend="${'my-bg-color-'+key.getValue()}"
-                    ></h4>
+                    ></h5>
                 </div>
             </div>
             <div class="row ml-2">
                 <div th:each="p : ${personsOnLevels.get(key)}">
                     <h5 th:text="${p}"
-                        class="card m-3 p-1"
+                        class="card m-3 p-2"
                         th:classappend="${'my-outline-'+key.getValue()}"
                         style="min-width: 80%">
                     </h5>

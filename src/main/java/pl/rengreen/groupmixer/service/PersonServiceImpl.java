@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.rengreen.groupmixer.model.Person;
 import pl.rengreen.groupmixer.model.Level;
+import pl.rengreen.groupmixer.model.Team;
 import pl.rengreen.groupmixer.repository.PersonRepository;
 
 import java.util.ArrayList;
@@ -26,6 +27,11 @@ public class PersonServiceImpl implements PersonService{
             personNames.add(person.getName());
         }
         return personNames;
+    }
+
+    @Override
+    public List<Person> findPersonsByTeam(Team team) {
+        return personRepository.findByTeam(team);
     }
 
 }
