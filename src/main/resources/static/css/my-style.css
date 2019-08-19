@@ -25,7 +25,7 @@ main.container {
     text-align: center;
 }
 
-.my-navbar {
+.my-text {
     font-family: 'Changa', sans-serif;
 }
 
@@ -103,10 +103,3 @@ card {
     border: solid 3px #EA1E63;
     background: white;
 }
-
-
-
-
-
-
-

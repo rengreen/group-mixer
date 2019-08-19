@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/static/css/lumen/bootstrap.css" th:href="@{css/lumen/bootstrap.css}"/>
     <link rel="stylesheet" href="/static/css/lumen/bootstrap.min.css" th:href="@{css/lumen/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/static/css/mystyle.css" th:href="@{css/mystyle.css}"/>
+    <link rel="stylesheet" href="/static/css/my-style.css" th:href="@{css/my-style.css}"/>
     <script th:src="@{webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{webjars/bootstrap/js/bootstrap.min.js}"></script>
     <link href="https://fonts.googleapis.com/css?family=Changa:600" rel="stylesheet">
@@ -20,7 +20,7 @@
 <header>
     <!--navbar-->
     <div class="row">
-        <h1 class="card my-navbar bg-white border-0 m-3 pl-3">generator grup</h1>
+        <h1 class="card my-text bg-white border-0 m-3 pl-3">generator grup</h1>
         <div class="row mx-3">
             <button class="btn btn-lg btn-outline-info  m-3" data-toggle="modal" data-target="#modal-info">Info</button>
             <a class="btn btn-lg btn-outline-primary m-3" href="/teams">Generuj grupy</a>
@@ -35,10 +35,13 @@
 <main class="container text-center">
 
     <!--groups with persons-->
+    <div class="row" th:if="${teamsCreated}">
+        <h2 class="card my-text bg-white border-0 m-3 pl-3">grupy</h2>
+    </div>
     <div class="row mb-5" th:if="${teamsCreated}">
         <div th:each="key: ${personsInTeams.keySet()}"
              class="col-sm-6 col-md-3 mb-1 d-flex align-items">
-            <div class="card mb-1" style="min-width: 80%">
+            <div class="card mb-3" style="min-width: 80%">
                 <h4 class="card-header text-center" th:text="${key.getName()}">Card title</h4>
                 <ul class="list-group list-group-flush">
                     <div th:each=" p : ${personsInTeams.get(key)}">
@@ -57,6 +60,9 @@
     </div>
 
     <!--levels with persons-->
+    <div class="row">
+        <h2 class="card my-text bg-white border-0 m-3 pl-3">poziomy</h2>
+    </div>
     <div th:each="key: ${personsOnLevels.keySet()}">
         <div class="row">
             <div>
