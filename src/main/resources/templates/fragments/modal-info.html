@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <div th:fragment="modal-info" class="modal" id="modal-info">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Informacje</h3>
@@ -10,7 +10,77 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Informacje o algorytmie</p>
+                <p>Aplikacja pozwala podzielić listę osób na grupy. Osoby mają różny poziom zaawansowania.
+                    Poziom otrzymanych grup powinien być możliwie wyrównany.</p>
+                <p>Aplikacja ma jedną funkcję - generowanie grup. Może być przydatna do transmisji on-line losowania
+                    grup, aby wszystkie zainteresowane osoby mogły uczestniczyć w losowaniu.</p>
+
+                <h2>Algorytm</h2>
+                <p><strong>Założenie:</strong> <br/>
+                    Algorytm powinien działać dla dowolnej liczby osób o różnych poziomach zaawansowania i losowo
+                    dzielić uczestników na grupy o jak najbardziej wyrównanym poziomie.</p>
+                <p><strong>Dane wejściowe:</strong></p>
+                <ul>
+                    <li><p>lista poziomów zaawansowania, z przypisanym <code>numerem poziomu</code> i jego <code>wartością
+                        punktową</code></p></li>
+                    <li><p>lista osób z określonym poziomem zaawansowania</p></li>
+                    <li><p>lista docelowych grup (pustych)</p>
+                </ul>
+
+                <p><strong>Realizacja:</strong></p>
+                <ol>
+                    <li>Dla każdego poziomu utwórz listę osób znajdujących się na tym poziomie zaawansowania. Pomieszaj
+                        losowo osoby wewnątrz każdego poziomu.
+                    </li>
+
+                    <li>Ułóż wszystkie osoby w jedną <code>listę bazową</code>, malejąco według <code>numerów
+                        poziomów</code>. W przypadku osób o równym <code>numerze poziomu</code> zachowaj losową
+                        kolejność z punktu 1.
+                    </li>
+
+                    <li>Pierwsza kolejka
+                        <ul>
+                            <li>wylosuj <code>kolejność grup</code>,</li>
+                            <li>do pierwszej grupy w <code>kolejności grup</code> przypisz osobę z pierwszej pozycji na
+                                <code>liście bazowej</code>, do następnych grup w <code>kolejności grup</code> przypisuj
+                                następne wolne osoby z <code>listy bazowej</code>,
+                            </li>
+
+                            <li>dla każdej grupy policz aktualną <code>sumę punktów</code> osób do niej należacych.</li>
+                        </ul>
+                    </li>
+
+                    <li>Druga kolejka
+                        <ul>
+                            <li>tak jak powyżej, wylosuj <code>kolejność grup</code>,</li>
+                            <li>posortuj grupy rosnąco, według <code>sumy punktów</code>, zachowując wylosowaną <code>kolejność
+                                grup</code> w przypadku równej <code>sumy punktów</code> (aby jako pierwsza pobierała
+                                kolejną osobę z <code>listy bazowej</code> grupa aktualnie "najsłabsza"),
+                            </li>
+                            <li>tak jak powyżej, do pierwszej grupy w <code>kolejności grup</code> przypisz osobę z
+                                pierwszej pozycji na <code>liście bazowej</code>, do następnych grup w <code>kolejności
+                                    grup</code> przypisuj następne wolne osoby z <code>listy bazowej</code>,
+                            </li>
+                            <li>tak jak powyżej, dla każdej grupy policz aktualną <code>sumę punktów</code> osób do niej
+                                należacych.
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>Powtarzaj drugą kolejkę, aż do pobrania wszystkich osób z <code>listy bazowej</code>.</li>
+                </ol>
+
+                <p><strong>Dane wyjściowe:</strong></p>
+                <ul>
+                    <li>dla każdej grupy lista wylosowanych osób</li>
+                    <li>dla każdej grupy <code>suma punktów</code> wszystkich osób w grupie</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <p>Kod, pliki wejściowe i więcej informacji:
+                    <a href="https://github.com/rengreen/group-mixer"
+                       target="_blank">github.com/rengreen/group-mixer</a>
+                </p>
             </div>
         </div>
     </div>
