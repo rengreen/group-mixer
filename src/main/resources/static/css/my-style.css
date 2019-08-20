@@ -27,12 +27,20 @@ main.container {
 
 .my-text {
     font-family: 'Changa', sans-serif;
+    background-color: white;
+    border: 0;
 }
 
 card {
     font-weight: bold;
 }
 
+/*cards for level names*/
+.my-card-reverse {
+    color: white;
+}
+
+/*cards for level names*/
 .my-bg-color-1 {
     background-color: #FF9700;
 }
@@ -64,6 +72,7 @@ card {
     background-color: #EA1E63;
 }
 
+/*cards for persons*/
 .my-outline-1 {
     border: solid 3px #FF9700;
     background: white;
