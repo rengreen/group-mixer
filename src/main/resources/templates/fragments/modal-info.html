@@ -11,14 +11,14 @@
             </div>
             <div class="modal-body">
                 <p>Aplikacja pozwala podzielić listę osób na grupy. Osoby mają różny poziom zaawansowania.
-                    Poziom otrzymanych grup powinien być możliwie wyrównany.</p>
+                    Siła otrzymanych grup powinna być możliwie wyrównana.</p>
                 <p>Aplikacja ma jedną funkcję - generowanie grup. Może być przydatna do transmisji on-line losowania
                     grup, aby wszystkie zainteresowane osoby mogły uczestniczyć w losowaniu.</p>
 
                 <h2>Algorytm</h2>
                 <p><strong>Założenie:</strong> <br/>
                     Algorytm powinien działać dla dowolnej liczby osób o różnych poziomach zaawansowania i losowo
-                    dzielić uczestników na grupy o jak najbardziej wyrównanym poziomie.</p>
+                    dzielić uczestników na grupy o jak najbardziej wyrównanej sile.</p>
                 <p><strong>Dane wejściowe:</strong></p>
                 <ul>
                     <li><p>lista poziomów zaawansowania, z przypisanym <code>numerem poziomu</code> i jego <code>wartością
@@ -53,8 +53,9 @@
                     <li>Druga kolejka
                         <ul>
                             <li>tak jak powyżej, wylosuj <code>kolejność grup</code>,</li>
-                            <li>posortuj grupy rosnąco, według <code>sumy punktów</code>, zachowując wylosowaną <code>kolejność
-                                grup</code> w przypadku równej <code>sumy punktów</code> (aby jako pierwsza pobierała
+                            <li>posortuj grupy rosnąco, według <code>sumy punktów</code>, w przypadku równej <code>sumy
+                                punktów</code> zachowaj wylosowaną <code>kolejność
+                                grup</code> (tak, aby jako pierwsza pobierała
                                 kolejną osobę z <code>listy bazowej</code> grupa aktualnie "najsłabsza"),
                             </li>
                             <li>tak jak powyżej, do pierwszej grupy w <code>kolejności grup</code> przypisz osobę z
