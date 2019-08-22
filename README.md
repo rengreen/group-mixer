@@ -1,6 +1,5 @@
 # Mikser Grup
-
-Aplikacja webowa, która pozwala podzielić listę osób na grupy. Osoby mają różny poziom zaawansowania. Poziom otrzymanych grup powinien być możliwie wyrównany.
+Aplikacja webowa, która pozwala podzielić listę osób na grupy. Osoby mają różny poziom zaawansowania. Siła otrzymanych grup powinna być możliwie wyrównana.
 
 Aplikacja ma jedną funkcję - generowanie grup. Może być przydatna do transmisji on-line losowania grup, aby wszystkie zainteresowane osoby mogły uczestniczyć w losowaniu.
 
@@ -9,7 +8,7 @@ Inspiracją do powstania projektu był podział 20 osób uczących się Javy na 
 ## Algorytm
 
 **Założenie:**  
-Algorytm powinien działać dla dowolnej liczby osób o różnych poziomach zaawansowania i losowo dzielić uczestników na grupy o jak najbardziej wyrównanym poziomie.
+Algorytm powinien działać dla dowolnej liczby osób o różnych poziomach zaawansowania i losowo dzielić uczestników na grupy o jak najbardziej wyrównanej sile. 
 
 **Dane wejściowe:**
 
@@ -17,15 +16,13 @@ Algorytm powinien działać dla dowolnej liczby osób o różnych poziomach zaaw
 - lista osób z określonym poziomem zaawansowania
 - lista docelowych grup (pustych)
 
-    [zobacz szczegóły danych wejściowych >](##Dane-wejściowe)
-
 **Realizacja:**
 
 1. Dla każdego poziomu utwórz listę osób znajdujących się na tym poziomie zaawansowania. Pomieszaj losowo osoby wewnątrz każdego poziomu.
 2. Ułóż wszystkie osoby w jedną `listę bazową`, malejąco według `numerów poziomów`. W przypadku osób o równym `numerze poziomu` zachowaj losową kolejność z punktu 1.
 3. Pierwsza kolejka 
     - wylosuj `kolejność grup`, 
-    - do pierwszej grupy w `kolejności grup` przypisz osobę z pierwszej pozycji na `liście bazowej`, do następnych grup w `kolejności grup` przypisuj następne wolne osoby z `listy bazowej`,
+    - do pierwszej grupy w `kolejności grup` przypisz osobę z pierwszej pozycji na `liście bazowej`, do następnych grup w `kolejności grup` przypisz po jednej osobie, kolejno pobranej z `listy bazowej`,
     - dla każdej grupy policz aktualną `sumę punktów` osób do niej należacych.
 4. Druga kolejka
    - tak jak powyżej, wylosuj `kolejność grup`,
@@ -56,8 +53,8 @@ Dane wejściowe są pobierane z plików `json`. Pliki z danymi znajdują się ka
 
 **Informacje o plikach wejściowych:**
     
-**Poziomy:** plik `src/main/resources/static/json/levels.json`
-
+**Poziomy:** `src/main/resources/static/json/levels.json`
+przykładowy plik:
 ```json
 [
   {
@@ -77,6 +74,9 @@ _value_ - unikalna liczba, określająca kolejność poziomów,
 _name_ - dowolna nazwa (wyświetlana na ekranie),  
 _weight_ - liczba punktów, czyli waga poziomu - celem algorytmu jest stworzenie grup o równej lub podobnej liczbie punktów; wartość _weight_ nie musi być unikalna.
 
+Jeżeli poziomów jest więcej niż 10 należy zdefiniować dodatkowe kolory w pliku css. 
+W przeciwnym razie wszystkie poziomy powyżej 10 będą się wyświetlały w kolorze domyślnym.
+
 **Osoby:** `src/main/resources/static/json/persons.json`  
 przykładowy plik:
 
@@ -94,7 +94,7 @@ przykładowy plik:
 ```
 
 _name_ - dowolna nazwa (wyświetlana na ekranie),  
-_level_ - liczba określająca poziom, zdefiniowana w polu _value_ w pliku. `levels.json`.
+_level_ - liczba określająca poziom, zdefiniowana w polu _value_ w pliku `levels.json`.
 
 **Grupy:** `src/main/resources/static/json/teams.json`  
 przykładowy plik:
