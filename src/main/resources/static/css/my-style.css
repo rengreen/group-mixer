@@ -25,6 +25,10 @@ main.container {
     text-align: center;
 }
 
+.my-error-background {
+    background-color: #e2eef3;
+}
+
 .my-text {
     font-family: 'Changa', sans-serif;
     background-color: white;
