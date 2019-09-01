@@ -9,7 +9,8 @@ public class Level {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "level_id")
     private Long id;
-    private int value;
+    @Column(unique = true)
+    private Integer value;
     private String name;
     private int weight;
     @OneToMany(mappedBy = "level", cascade = CascadeType.PERSIST)

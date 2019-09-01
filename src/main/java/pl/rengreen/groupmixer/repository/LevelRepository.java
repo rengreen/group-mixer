@@ -9,13 +9,12 @@ import java.util.List;
 @Repository
 public interface LevelRepository extends JpaRepository<Level, Long> {
 
+    List<Level> findAllByOrderByValueDesc();
+
+    List<Level> findAllByOrderByValueAsc();
+
     boolean existsByValue(int value);
 
     Level findByValue(int levelValue);
 
-    List<Level> findAllByOrderByValue();
-
-    Level findByName(String levelName);
-
-    List<Level> findAllByOrderByValueDesc();
 }

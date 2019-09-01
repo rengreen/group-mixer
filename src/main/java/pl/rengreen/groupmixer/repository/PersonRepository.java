@@ -11,9 +11,5 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    boolean existsByName(String name);
-
     List<Person> findByLevel(Level level);
-
-    List<Person> findByTeam(Team team);
 }

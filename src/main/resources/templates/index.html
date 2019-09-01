@@ -31,14 +31,14 @@
     <div class="row mb-5" th:if="${teamsCreated}">
 
         <!--group name-->
-        <div th:each="key: ${personsInTeams.keySet()}"
+        <div th:each="team: ${teams}"
              class="col-sm-6 col-md-3 mb-1 d-flex align-items">
             <div class="card mb-3" style="min-width: 80%">
-                <h4 class="card-header" th:text="${key.getName()}">Card title</h4>
+                <h4 class="card-header" th:text="${team.getName()}"></h4>
 
                 <!--persons-->
                 <ul class="list-group list-group-flush">
-                    <div th:each=" p : ${personsInTeams.get(key)}">
+                    <div th:each=" p : ${team.getPersonsInTeam()}">
                         <li class="list-group-item py-1">
                             <h5 th:text="${p.getName()}"
                                 class="card p-1"
@@ -47,7 +47,7 @@
                             </h5>
                         </li>
                     </div>
-                    <li th:text="'Suma punktów: '+${key.getPoints()}" class="list-unstyled"></li>
+                    <li th:text="'Suma punktów: '+${team.getPoints()}" class="list-unstyled"></li>
                 </ul>
 
             </div>
@@ -58,25 +58,25 @@
     <div class="row">
         <h2 class="card my-text m-3 pl-3">poziomy</h2>
     </div>
-    <div th:each="key: ${personsOnLevels.keySet()}">
+    <div th:each="level: ${levels}">
 
         <!--level name-->
         <div class="row">
             <div>
                 <div>
-                    <h5 th:text="${key.getName()}"
+                    <h5 th:text="${level.getName()}"
                         class="card my-card-reverse m-3 p-2"
-                        th:classappend="${'my-bg-color-'+key.getValue()}"
+                        th:classappend="${'my-bg-color-'+level.getValue()}"
                     ></h5>
                 </div>
             </div>
 
             <!--persons-->
             <div class="row ml-2">
-                <div th:each="p : ${personsOnLevels.get(key)}">
-                    <h5 th:text="${p}"
+                <div th:each="p : ${level.getPersonsOnLevel()}">
+                    <h5 th:text="${p.getName()}"
                         class="card m-3 p-2"
-                        th:classappend="${'my-outline-'+key.getValue()}"
+                        th:classappend="${'my-outline-'+p.getLevel().getValue()}"
                         style="min-width: 80%">
                     </h5>
                 </div>

@@ -7,7 +7,4 @@ import pl.rengreen.groupmixer.model.Team;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-    boolean existsByName(String name);
-
-    Team findByName(String teamName);
 }

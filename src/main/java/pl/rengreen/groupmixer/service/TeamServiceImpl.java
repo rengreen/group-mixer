@@ -32,8 +32,6 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void generateTeams() {
-
-        List<Level> levels = levelRepository.findAllByOrderByValueDesc();
         List<Person> allPersons = createOrderedPersonList();
 
         List<Team> teams = teamRepository.findAll();
@@ -60,10 +58,9 @@ public class TeamServiceImpl implements TeamService {
     }
 
     private List<Person> createOrderedPersonList(){
-        List<Level> levels = levelRepository.findAllByOrderByValueDesc();
         List<Person> orderedPersons = new ArrayList<>();
 
-        for (Level level : levels) {
+        for (Level level : levelRepository.findAllByOrderByValueDesc()) {
             List<Person> persons = personRepository.findByLevel(level);
             Collections.shuffle(persons);
             orderedPersons.addAll(persons);

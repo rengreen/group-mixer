@@ -18,8 +18,8 @@ public class LevelServiceImpl implements LevelService{
     }
 
     @Override
-    public List<Level> findAllByOrderByValue() {
-        return levelRepository.findAllByOrderByValue();
+    public List<Level> findAllByOrderByValueAsc() {
+        return levelRepository.findAllByOrderByValueAsc();
     }
 
 }

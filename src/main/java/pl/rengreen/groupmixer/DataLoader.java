@@ -71,7 +71,7 @@ public class DataLoader implements CommandLineRunner {
             int levelValue = (int) (long) jsonObject.get("level");
             Level level = levelRepository.findByValue(levelValue);
             Person person = new Person(name, level);
-            if (!personRepository.existsByName(name)) personRepository.save(person);
+            personRepository.save(person);
         }
 
         logger.info("Person data loaded from " + fileName + " file");
@@ -86,7 +86,7 @@ public class DataLoader implements CommandLineRunner {
         for (Object object : jsonArray) {
             JSONObject jsonObject = (JSONObject) object;
             String name = (String) jsonObject.get("name");
-            if (!teamRepository.existsByName(name)) teamRepository.save(new Team(name));
+            teamRepository.save(new Team(name));
         }
 
         logger.info("Empty teams loaded from " + fileName + " file");
