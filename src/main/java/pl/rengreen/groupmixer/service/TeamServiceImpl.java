@@ -35,7 +35,9 @@ public class TeamServiceImpl implements TeamService {
         List<Person> allPersons = createOrderedPersonList();
 
         List<Team> teams = teamRepository.findAll();
-        teamRepository.findAll().forEach(team -> team.setPoints(0));
+        for (Team team : teams) {
+            team.setPoints(0);
+        }
 
         int position = 0;
         int maxPersonInGroup=(int) Math.ceil((double) allPersons.size()/teams.size());
