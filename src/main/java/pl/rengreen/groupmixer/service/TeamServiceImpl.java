@@ -2,14 +2,17 @@ package pl.rengreen.groupmixer.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.rengreen.groupmixer.model.Level;
 import pl.rengreen.groupmixer.model.Person;
 import pl.rengreen.groupmixer.model.Team;
 import pl.rengreen.groupmixer.repository.LevelRepository;
 import pl.rengreen.groupmixer.repository.PersonRepository;
 import pl.rengreen.groupmixer.repository.TeamRepository;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Stack;
+import java.util.stream.IntStream;
 
 @Service
 public class TeamServiceImpl implements TeamService {
@@ -32,41 +35,44 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void generateTeams() {
-        List<Person> allPersons = createOrderedPersonList();
+        Stack<Person> orderedPersons = createOrderedPersons();
 
         List<Team> teams = teamRepository.findAll();
-        for (Team team : teams) {
-            team.setPoints(0);
-        }
+        teams.forEach(team -> team.setPoints(0));
 
-        int position = 0;
-        int maxPersonInGroup=(int) Math.ceil((double) allPersons.size()/teams.size());
+        int maxPersonInGroup = (int) Math.ceil((double) orderedPersons.size() / teams.size());
 
-        for (int k = 0; k < maxPersonInGroup; k++) {
-            Collections.shuffle(teams);
-            teams.sort(Comparator.comparing(Team::getPoints));
-
-            for (Team team : teams) {
-                if (position<allPersons.size()) {
-                    Person person = allPersons.get(position);
-                    int point = team.getPoints() + person.getLevel().getWeight();
-                    team.setPoints(point);
-                    person.setTeam(team);
-                    personRepository.save(person);
-                    position++;
-                }
-            }
-        }
+        IntStream.range(0, maxPersonInGroup)
+                .forEach(k -> {
+                    shuffleAndSort(teams);
+                    teams.stream()
+                            .filter(team -> !orderedPersons.empty())
+                            .forEach(team -> addPersonToTeam(orderedPersons, team));
+                });
     }
 
-    private List<Person> createOrderedPersonList(){
-        List<Person> orderedPersons = new ArrayList<>();
+    private void shuffleAndSort(List<Team> teams) {
+        Collections.shuffle(teams);
+        teams.sort(Comparator.comparing(Team::getPoints));
+    }
 
-        for (Level level : levelRepository.findAllByOrderByValueDesc()) {
-            List<Person> persons = personRepository.findByLevel(level);
-            Collections.shuffle(persons);
-            orderedPersons.addAll(persons);
-        }
+    private void addPersonToTeam(Stack<Person> orderedPersons, Team team) {
+        Person person = orderedPersons.pop();
+        int point = team.getPoints() + person.getLevel().getWeight();
+        team.setPoints(point);
+        person.setTeam(team);
+        personRepository.save(person);
+    }
+
+    private Stack<Person> createOrderedPersons() {
+        Stack<Person> orderedPersons = new Stack<>();
+        levelRepository.findAllByOrderByValueAsc()
+                .forEach(level -> shuffleAndPush(personRepository.findByLevel(level), orderedPersons));
         return orderedPersons;
+    }
+
+    private void shuffleAndPush(List<Person> persons, Stack<Person> orderedPersons) {
+        Collections.shuffle(persons);
+        persons.forEach(orderedPersons::push);
     }
 }
